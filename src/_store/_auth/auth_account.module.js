@@ -1,15 +1,17 @@
-import { userService } from '../_services';
-import { router } from '../_helpers';
+import { userService } from '../../_services/index';
+import { router } from '../../_helpers/index';
+import {accounts} from "../_model/_account/accounts.module";
 
 const user = JSON.parse(localStorage.getItem('user'));
+
 const state = user
-    ? { status: { loggedIn: true }, user }
-    : { status: {}, user: null };
+    ? { status: { loggedIn: true }, user, person: {} }
+    : { status: {loggedIn: false}, user: null, person: null };
 
 const actions = {
     login({ dispatch, commit }, { username, password }) {
         commit('loginRequest', { username });
-    
+
         userService.login(username, password)
             .then(
                 user => {
@@ -28,12 +30,11 @@ const actions = {
     },
     register({ dispatch, commit }, user) {
         commit('registerRequest', user);
-    
+
         userService.register(user)
             .then(
                 user => {
                     commit('registerSuccess', user);
-                    router.push('/login');
                     setTimeout(() => {
                         // display success message after route change completes
                         dispatch('alert/success', 'Registration successful', { root: true });
@@ -43,6 +44,13 @@ const actions = {
                     commit('registerFailure', error);
                     dispatch('alert/error', error, { root: true });
                 }
+            );
+    },
+    getPerson({ commit }) {
+        userService.getLogedIn(auth_account.state.user)
+            .then(
+                person => commit('getPersonSuccess', person),
+                error => commit('getPersonFailure', error)
             );
     }
 };
@@ -72,10 +80,16 @@ const mutations = {
     },
     registerFailure(state, error) {
         state.status = {};
+    },
+    getPersonSuccess(state, person){
+        state.person = person;
+    },
+    getPersonError(state, error){
+        state.person = {};
     }
 };
 
-export const account = {
+export const auth_account = {
     namespaced: true,
     state,
     actions,
