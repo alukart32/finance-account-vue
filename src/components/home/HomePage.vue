@@ -29,7 +29,7 @@
                                <b-dropdown-divider></b-dropdown-divider>
                                <b-dropdown-item @click="handleOperation('delete', a)" >Удалить</b-dropdown-item>
                            </b-dropdown>
-                    </div>
+                        </div>
                     </div>
                     <br/>
                 </li>
@@ -82,6 +82,11 @@
         },
         created(){
             this.loadAcc();
+        },
+        beforeRouteUpdate(to, from, next) {
+            next(vm => {
+                vm.loadAcc();
+            })
         },
         beforeRouteEnter (to, from, next) {
             next(vm => {

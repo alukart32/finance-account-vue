@@ -1,37 +1,36 @@
 <template>
     <div class="row justify-content-md-center">
-        <div class="col-md-6" style="margin-left: 5em">
+        <div class="col-md-6" style="background-color: rgba(202,212,213,0.78); border-radius: 15px">
             <div class="row">
-                <div class="col-md-6">
-                    <h2>Добавление аккаунта</h2>
+                <div class="col-md-8 ml-3 mt-1">
+                    <h2>Новый аккаунт</h2>
                     <div class="form-group">
-                        <label for="name">Имя аккаунта</label>
+                        <h5 for="name">Имя аккаунта</h5>
                         <input type="text" v-model="account.name" v-validate="'required'"  aria-describedby="accNameHelp"
-                               name="name" class="form-control col-md-offset-2" :class="{ 'is-invalid': submitted && errors.has('name') }" />
-                        <small id="accNameHelp" class="form-text text-muted">Придумаете имя вашего аккаунта</small>
+                               name="name" class="form-control" :class="{ 'is-invalid': submitted && errors.has('name') }" />
+                        <small id="accNameHelp" class="form-text text-muted" style="font-size: 15px">Придумаете имя вашего аккаунта</small>
                         <div v-if="submitted && errors.has('name')" class="invalid-feedback">{{ errors.first('name') }}</div>
                     </div>
                 </div>
-                <div class="col-md-2" style="margin-top: 3em">
-                    <label>Валюта</label>
-                    <select v-model="account.currency.code">
+                <div class="col-md-2 ml-4" style="margin-top: 3.5em" >
+                    <h6>Валюта</h6>
+                    <select v-model="account.currency.code" style="border-radius: 4px; margin-top: 0.3em">
                         <option v-for="option in currencyList.options" v-bind:value="option.value">
                             {{ option.text }}
                         </option>
                     </select>
                 </div>
             </div>
-        <div class="row">
-            <div class="col-md-10 form-group shadow-textarea">
-                <label for="descr">Описание</label>
+
+            <div class="col-md-12 form-group shadow-textarea">
+                <h5 for="descr">Описание</h5>
                 <textarea class="form-control z-depth-1" v-model="account.description" id="descr" rows="3"
                           placeholder="Напишите что-то об аккаунте ..."></textarea>
             </div>
-        </div>
             <br/>
-            <div class="form-group">
-                <button class="btn btn-primary" @click="handleAdd">Добавить</button>
-                <button class="btn btn-outline-info" style="margin-left: 13em; margin-top: 0.3em; margin-bottom: 0.5em" @click="goToAccounts">Назад</button>
+            <div class="form-group justify-content-md-end">
+                <button class="btn btn-primary" style="margin-left: 220px" @click="handleAdd" >Добавить</button>
+                <button class="btn btn-outline-info ml-1" @click="goToAccounts" >Назад</button>
             </div>
         </div>
     </div>
@@ -77,9 +76,7 @@
                 });
             },
             goToAccounts(){
-                if(true) {
-                    this.$router.push('/accounts');
-                }
+                    this.$router.push('/');
             }
         }
     }
