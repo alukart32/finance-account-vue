@@ -6,6 +6,6 @@ To see a demo and further details go to http://jasonwatmore.com/post/2018/07/14/
 
 # finance app
 
-That "example" is the base of vue app.
+That "vue-vuex-registration-login-example" is the base of vue app.
 
 Especially it's a frot side of financeapp.
