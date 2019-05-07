@@ -1,12 +1,14 @@
 <template>
     <div class="row justify-content-md-center">
-        <div class="col-md-6" style="background-color: rgba(202,212,213,0.78); border-radius: 15px">
+        <div class="col-md-8" style="background-color: rgba(202,212,213,0.78); border-radius: 15px">
             <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 mt-2">
+                <div class="row mt-2">
+                    <div class="col-md-6" style="border: 1px solid gold">
                         <h4>
                             Аккаунт: {{this.account.name}}
                         </h4>
+                    </div>
+                    <div class="col-md-6">
                         <h3 class="text-center">
                             {{this.account.balance}} {{this.account.currency.code}}
                         </h3>
@@ -27,18 +29,18 @@
                     </div>
                 </div>
                 <div class="row justify-content-md-center">
-                    <div class="col-md-10">
+                    <div class="col-md-11">
                             <button class="btn btn-primary" type="button" @click="goToOperations">
-                                Операции
+                                Последние операции
                             </button>
                             <button class="btn btn-secondary" type="button" disabled>
-                                История
+                               Графическая выписка
                             </button>
                             <button class="btn btn-secondary" type="button" @click="updateAccount">
                                 Изменить
                             </button>
                     </div>
-                    <button class="btn btn-outline-info" style="margin-left: 13em; margin-top: 0.3em; margin-bottom: 0.5em" @click="goToAccountsList">Назад</button>
+                    <button class="btn btn-outline-info" style="margin-left:25.3em; margin-top: 0.3em; margin-bottom: 0.5em" @click="goToAccountsList">Назад</button>
                 </div>
             </div>
         </div>

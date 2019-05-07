@@ -1,6 +1,6 @@
 <template>
     <div class="row" style="border: 1px solid lawngreen">
-        <div class="col-md-7" style="border: 1px solid #1318f0">
+        <div class="col-md-8" style="border: 1px solid #1318f0">
             <h2 style="margin-left: 40px" >Аккаунты</h2>
             <ul v-if="this.accountSet" style="list-style-type: none">
                 <li v-for="a in this.accountSet">
@@ -27,7 +27,7 @@
                                <b-dropdown-item @click="handleOperation('deposit', a)">Пополнить</b-dropdown-item>
                                <b-dropdown-item @click="handleOperation('withdrawal', a)">Снять</b-dropdown-item>
                                <b-dropdown-divider></b-dropdown-divider>
-                               <b-dropdown-item  @click="handleOperation('delete', a)">Удалить</b-dropdown-item>
+                               <b-dropdown-item @click="handleOperation('delete', a)" >Удалить</b-dropdown-item>
                            </b-dropdown>
                     </div>
                     </div>
@@ -49,18 +49,6 @@
 
     export default {
         components: {NavBar},
-        data: function(){
-            return{
-                operation: '',
-                operationList:{
-                    options: [
-                        { text: 'Пополнить', value: 'deposit' },
-                        { text: 'Снять', value: 'withdrawal' },
-                        { text: 'Удалить', value: 'remove' }
-                    ]
-                }
-            }
-        },
         computed:{
             ...mapState({
                 accountSet: state => state.accounts.all.items
@@ -102,17 +90,4 @@
         }
     };
 
-
-
-   /* import { mapState, mapActions} from 'vuex'
-    import NavBar from "../navbar/NavBar";
-
-    export default {
-        components: {NavBar},
-        computed: {
-            ...mapState({
-                person: state => state.auth_account.person,
-            })
-        }
-    };*/
 </script>
