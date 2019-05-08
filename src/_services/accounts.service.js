@@ -37,7 +37,7 @@ function update(editAccount, user) {
             code: editAccount.currency.code
         }
     };
-    let accountId = editAccount.id;
+    let accountId = editAccount.accountId;
 
     return fetch(`${config.apiUrl}/account/${accountId}/update`, {
         method: 'put',

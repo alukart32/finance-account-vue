@@ -41,11 +41,9 @@
 
 <script>
 
-
     import {mapActions, mapState} from 'vuex'
     import {accounts} from "../../_store/_model/_account/accounts.module";
     import NavBar from "../navbar/NavBar";
-
 
     export default {
         components: {NavBar},
@@ -73,9 +71,12 @@
                 location.reload();
             },
             handleOperation(op, account){
-                if(op === 'deposit' || op === 'withdrawal')
-                    this.$router.push('/account/' + account.id + '/operations/' + account.currency.code);
+                if(op === 'deposit')
+                    this.$router.push('/account/' + account.id + '/from/'+'list'+'/deposit/' + account.currency.code);
                 else
+                    if(op === 'withdrawal')
+                        this.$router.push('/account/' + account.id + '/from/'+'list'+'/withdrawal/' + account.currency.code);
+                    else
                     if(op === 'delete')
                         this.handleDelete(account.id);
             }

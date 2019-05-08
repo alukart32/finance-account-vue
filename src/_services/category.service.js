@@ -27,7 +27,7 @@ function getDefault() {
 }
 
 function add(account) {
-    return fetch(`${config.apiUrl}/category/addTo/${auth_account.state.all.user.id}`, {
+    return fetch(`${config.apiUrl}/category/addTo/${auth_account.state.all.user.accountId}`, {
         method: 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -46,7 +46,7 @@ function update(editAccount, user) {
             code: editAccount.currency.code
         }
     };
-    let accountId = editAccount.id;
+    let accountId = editAccount.accountId;
 
     return fetch(`${config.apiUrl}/account/${accountId}/update`, {
         method: 'put',

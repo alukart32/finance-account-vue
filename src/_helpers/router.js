@@ -14,7 +14,9 @@ import Accounts from '../components/model/account/Accounts'
 import AccountDetail from '../components/model/account/AccountDetail'
 import AddAccount from '../components/model/account/AddAccount'
 import UpdateAccount from '../components/model/account/UpdateAccount'
-import Operations from '../components/txn/Operations'
+import Deposit from '../components/txn/Deposit'
+import Withdrawal from '../components/txn/Withdrawal'
+
 
 
 import Help from '../components/help/Help'
@@ -29,9 +31,10 @@ export const router = new Router({
     { path: '/register', component: RegisterPage },
 
     // loged in user's pages
-    {path:'/accountDetail/:id', component: AccountDetail, props: true},
-    {path:'/updateAccount/:id', component: UpdateAccount, props: true},
-    {path:'/account/:id/operations/:curr', component: Operations, props: true},
+    {path:'/accountDetail/:accountId', component: AccountDetail, props: true},
+    {path:'/updateAccount/:accountId', component: UpdateAccount, props: true},
+    {path:'/account/:accountId/from/:from/deposit/:curr', component: Deposit, props: true},
+    {path:'/account/:accountId/from/:from/withdrawal/:curr', component: Withdrawal, props: true},
 
     {path:'/addAccount', component: AddAccount},
 

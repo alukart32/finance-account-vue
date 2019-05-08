@@ -6,7 +6,7 @@
                 <li v-for="a in this.accountSet">
                     <div class="row">
                         <div class="col-md-8" style="border: 1px solid chartreuse">
-                            <button @click="goToDetails(a.id)" class="list-group-item list-group-item-action list-group-item-secondary">
+                            <button @click="goToDetails(a.accountId)" class="list-group-item list-group-item-action list-group-item-secondary">
                                 <div class="row">
                                     <div class="col" style="text-align: justify">
                                         <h5>
@@ -23,7 +23,7 @@
                             </button>
                         </div>
                         <div class="mt-2">
-                            <button class="btn btn-outline-danger" @click="handleDelete(a.id)" type="submit">X</button>
+                            <button class="btn btn-outline-danger" @click="handleDelete(a.accountId)" type="submit">X</button>
                         </div>
                     </div>
                     <br/>

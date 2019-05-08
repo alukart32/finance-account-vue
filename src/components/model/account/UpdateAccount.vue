@@ -39,7 +39,7 @@
         },
         data: function () {
             return{
-                id: this.$route.params.id,
+                accountId: this.$route.params.accountId,
                 account: {},
                 submitted: true
             }
@@ -51,7 +51,7 @@
         },
         methods:{
             getCurrentAccount(){
-                var a = this.accountSet.find(x => x.id === +this.id);
+                var a = this.accountSet.find(x => x.accountId === +this.accountId);
 
                 return a;
                 if(a !== undefined)
@@ -60,12 +60,12 @@
                     return {};
             },
             goToAccount(){
-                this.$router.push('/accountDetail/' + this.id)
+                this.$router.push('/accountDetail/' + this.accountId)
             },
             ...mapActions('accounts', ['editAccount']),
             update(){
                 let updatedAccount = {
-                    id: this.id,
+                    accountId: this.accountId,
                     name: this.account.name,
                     description: this.account.description,
                     currency: {
@@ -75,7 +75,7 @@
 
                 this.editAccount(updatedAccount);
 
-                this.$router.push('/accountDetail/' + this.id);
+                this.$router.push('/accountDetail/' + this.accountId);
             }
         }
     }

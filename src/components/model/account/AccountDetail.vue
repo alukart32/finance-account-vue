@@ -47,7 +47,7 @@
                 </div>
                 <div class="row justify-content-md-center">
                     <div class="col-md-11">
-                            <button class="btn btn-primary" type="button" @click="goToOperations">
+                            <button class="btn btn-primary" type="button" @click="">
                                 Последние операции
                             </button>
                             <button class="btn btn-secondary" type="button" disabled>
@@ -57,7 +57,8 @@
                                 Изменить
                             </button>
                     </div>
-                    <button class="btn btn-outline-info" style="margin-left:25.3em; margin-top: 0.3em; margin-bottom: 0.5em" @click="goToAccountsList">Назад</button>
+                    <button class="btn btn-outline-info" style="margin-left:25.3em; margin-top: 0.3em;
+                    margin-bottom: 0.5em" @click="goBack">Назад</button>
                 </div>
             </div>
         </div>
@@ -74,7 +75,7 @@
         },
         data: function () {
             return{
-                id: this.$route.params.id,
+                accountId: this.$route.params.accountId,
                 account: {}
             }
         },
@@ -88,33 +89,34 @@
                 delete: 'removeAccount'
             }),
             getCurrentAccount(){
-                let a = this.accountSet.find(x => x.id === +this.id);
+                let a = this.accountSet.find(x => x.id === +this.accountId);
 
                 if(a !== undefined)
                     return a;
                 else
                     return {};
             },
-            goToAccountsList(){
+            goBack(){
                 this.$router.push('/');
             },
             updateAccount(){
-                this.$router.push('/updateAccount/' + this.id);
+                this.$router.push('/updateAccount/' + this.accountId);
             },
             goToOperations(){
-                this.$router.push('/account/' + this.id + '/operations/' + this.account.currency.code);
+                this.$router.push('/account/' + this.accountId + '/operations/' + this.account.currency.code);
             },
             handleOperation(op, account){
-                if(op === 'deposit' || op === 'withdrawal')
-                    this.goToOperations();
+                if(op === 'deposit')
+                    this.$router.push('/account/' + this.accountId + '/from/'+'ad'+'/deposit/' + this.account.currency.code);
                 else
-                if(op === 'delete') {
-                    this.handleDelete();
-
-                }
+                    if(op === 'withdrawal')
+                        this.$router.push('/account/' + this.accountId +'/from/'+'ad'+ '/withdrawal/' + this.account.currency.code);
+                    else
+                        if(op === 'delete')
+                            this.handleDelete(this.accountId);
             },
             handleDelete(){
-                this.delete(this.id);
+                this.delete(this.accountId);
                 this.goToAccountsList();
             },
         }

@@ -1,8 +1,8 @@
 <template>
     <div class="row justify-content-md-center">
-        <div class="col-md-6">
+        <div class="col-md-6" style="background-color: rgba(202,212,213,0.78); border-radius: 15px">
         <form  @submit.prevent="handleSubmit()">
-            <h2>Регистрация</h2>
+            <h2 style="margin-top: 0.2em">Регистрация</h2>
             <div class="form-group">
                 <label for="username">username</label>
                 <input type="text" v-model="user.username" v-validate="'required|alpha_dash'"  aria-describedby="usernameHelp"
